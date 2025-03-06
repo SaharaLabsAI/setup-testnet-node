@@ -1,10 +1,10 @@
-## Sahara Testnet Node Setup
+## 🚀 Sahara Testnet Node Setup
 
 This repo contains a minimal configuration for bootstraping a testnet node using docker compose.
 
-## Get Started
+## 🏁 Get Started
 
-### Install Docker
+### 🐳 Install Docker
 
 First, ensure Docker Engine is installed on your system. If you haven't installed Docker yet:
 
@@ -19,9 +19,9 @@ docker run hello-world
 docker compose version
 ```
 
-### Clone this repo
+### 📥 Clone this repo
 
-### Download the testnet data snapshot
+### 💾 Download the testnet data snapshot
 
 Download the latest testnet data snapshot:
 
@@ -32,13 +32,13 @@ Extract the snapshot into `./chain-data/data` directory:
 
 Note you need rename the extract directoy to `data`
 
-### Start the node
+### ▶️ Start the node
 
 ```bash
 docker compose up -d
 ````
 
-### Check the logs
+### 📋 Check the logs
 
 You can check the logs with:
 
@@ -48,7 +48,7 @@ docker compose logs -f | grep finaliz
 
 The above command will continuously display log entries containing the word "finaliz", which indicates that the node is successfully running and synchronizing blocks from the network. This filtered view helps you confirm that your node is making progress without showing excessive log information.
 
-## Node Configuration
+## ⚙️ Node Configuration
 
 The configuration files could be found in the `chain-data/config` directory.
 Currently we have below ports exposed:
