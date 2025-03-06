@@ -1,0 +1,20 @@
+services:
+  saharad:
+    image: ghcr.io/saharalabsai/sahara/saharad-testnet-1:testnet-1@sha256:5a086a9cb0f2b93338775402b860106af5a8387de7554a8ece77657d23cc149a
+    #restart: unless-stopped
+    user: root
+    volumes:
+      - ./chain-data:/sahara/.saharad
+    command: ["start", "--home", "/sahara/.saharad"]
+    ports:
+      - 26656:26656
+      - 26657:26657
+      - 26660:26660
+      - 16161:16161
+      - 16162:16162
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100M"
+        max-file: "10"
