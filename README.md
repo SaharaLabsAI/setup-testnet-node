@@ -55,7 +55,6 @@ Currently we have below ports exposed:
 
 - 26656:26656 # CometBFT P2P port
 - 26657:26657 # CometBFT RPC port
-- 26660:26660 # CometBFT GRPC port
 - 16161:16161 # ETH RPC port
 - 16162:16162 # ETH Websocket RPC port
 

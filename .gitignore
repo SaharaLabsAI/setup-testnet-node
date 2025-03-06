@@ -1,1 +1,4 @@
 chain-data/data
+chain-data/config/addrbook.json
+chain-data/config/node_key.json
+chain-data/config/priv_validator_key.json
