@@ -41,7 +41,7 @@ moniker = "sahara-testnet-node1"
 #   - EXPERIMENTAL
 #   - use badgerdb build tag (go build -tags badgerdb)
 #db_backend = "goleveldb"
-db_backend = "pebbledb"
+db_backend = "rocksdb"
 
 # Database directory
 db_dir = "data"
@@ -371,8 +371,8 @@ enable = true
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = "https://testnet-cos-rpc1.saharalabs.ai,https://testnet-rpc2.saharalabs.ai"
-trust_height = 2771005
-trust_hash = "A0B20AAA5D793108E53ED5F5E3293DC3937A6FA5AC22A86F9CCB6BF9C0C4DAC9"
+trust_height = 3073001
+trust_hash = "66C6F1CC7A8CBD2FE84BDFDA65729553A285371D463C3CCB5E99FDBBDA3655B4"
 trust_period = "168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.

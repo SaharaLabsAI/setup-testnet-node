@@ -1,6 +1,6 @@
 services:
   saharad:
-    image: ghcr.io/saharalabsai/sahara/saharad-testnet-1:testnet-1@sha256:5a086a9cb0f2b93338775402b860106af5a8387de7554a8ece77657d23cc149a
+    image: ghcr.io/saharalabsai/sahara/saharad-testnet-1:experiment
     restart: unless-stopped
     user: root
     volumes:
