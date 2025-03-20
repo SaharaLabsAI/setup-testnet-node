@@ -21,33 +21,6 @@ docker compose version
 
 ### 📥 Clone this repo
 
-### 💾 Download the testnet data snapshot
-
-Download the latest testnet data snapshot:
-
-````bash
-wget https://storage.googleapis.com/testnet-snapshots/data.bak.tar.gz
-
-Extract the snapshot into `./chain-data/data` directory:
-
-Note you need rename the extract directoy to `data`
-
-### ▶️ Start the node
-
-```bash
-docker compose up -d
-````
-
-### 📋 Check the logs
-
-You can check the logs with:
-
-```bash
-docker compose logs -f | grep finaliz
-```
-
-The above command will continuously display log entries containing the word "finaliz", which indicates that the node is successfully running and synchronizing blocks from the network. This filtered view helps you confirm that your node is making progress without showing excessive log information.
-
 ## ⚙️ Node Configuration
 
 The configuration files could be found in the `chain-data/config` directory.
@@ -59,3 +32,64 @@ Currently we have below ports exposed:
 - 16162:16162 # ETH Websocket RPC port
 
 You can change the configuration in the `chain-data/config/config.toml` file.
+
+### Configure State sync
+
+State sync is a feature that allows your node to synchronize the state of the chain from a trusted source instead of downloading the entire history from the genesis block. This significantly reduces the synchronization time by fetching only the latest state snapshot rather than processing all historical blocks.
+
+The state sync configuration is already set up in the `chain-data/config/config.toml` file with appropriate RPC servers, trusted height, and hash values. You can verify these settings in the configuration file.
+
+The Sahara testnet creates a new state snapshot every 1000 blocks. For optimal synchronization, you can update the state sync configuration to use the latest snapshot by modifying the following parameters in the `chain-data/config/config.toml` file:
+
+```bash
+sed -i 's/trust_height = 0/trust_height = {block height/g' chain-data/config/config.toml
+sed -i 's/trust_hash = ""/trust_hash = "{hash at the trust height}"/g' chain-data/config/config.toml
+```
+
+You can get th latest block hash at the specified height using this command:
+
+```bash
+ curl https://testnet-cos-rpc1.saharalabs.ai/commit?height={height} | jq '.result.signed_header.commit.block_id.hash'
+```
+
+### Update the node information
+
+#### Moniker
+
+Moniker is the name of your node. You can change it by editing the `moniker` field in the `config.toml` file.
+
+```bash
+sed -i 's/moniker = "sahara-testnet-node1"/moniker = "your-node-name"/g' chain-data/config/config.toml
+```
+
+#### External Address
+
+External address is the address of your node that will be used to connect to the network. You can change it by editing the `external_address` field in the `config.toml` file. Please make sure to use the correct IP/port combination.
+
+```bash
+sed -i 's/external_address = ""/external_address = "your-node-address"/g' chain-data/config/config.toml
+```
+
+### Batch Request Size
+
+Batch request size is the number of requests that will be bundled into a single batch request. You should configure this value if you want to provide rpc service to the public.
+
+```bash
+echo 'batch-request-limit= "500" ' >> chain-data/config/app.toml
+```
+
+### Run the node
+
+```bash
+docker compose up -d
+```
+
+### 📋 Check the logs
+
+You can check the logs with:
+
+```bash
+docker compose logs -f | grep finaliz
+```
+
+The above command will continuously display log entries containing the word "finaliz", which indicates that the node is successfully running and synchronizing blocks from the network. This filtered view helps you confirm that your node is making progress without showing excessive log information.
