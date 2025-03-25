@@ -19,7 +19,7 @@ query-gas-limit = "0"
 # nothing: all historic states will be saved, nothing will be deleted (i.e. archiving node)
 # everything: 2 latest states will be kept; pruning at 10 block intervals.
 # custom: allow pruning options to be manually specified through 'pruning-keep-recent', and 'pruning-interval'
-pruning = "nothing"
+pruning = "everything"
 
 # These are applied if and only if the pruning strategy is custom.
 pruning-keep-recent = "0"
@@ -252,3 +252,47 @@ gas-cap = "5000000"
 
 # Call timeout defines the max evm execution time in seconds allowed in eth_call jsonrpc
 call-timeout = "5"
+# Batch request limit defines the maximum number of requests in a batch allowed in eth_call jsonrpc
+
+batch-request-limit = "500"
+
+[memiavl]
+
+# Enable defines if the memiavl should be enabled.
+enable = true
+
+# ZeroCopy defines if the memiavl should return slices pointing to mmap-ed buffers directly (zero-copy),
+# the zero-copied slices must not be retained beyond current block's execution.
+# the sdk address cache will be disabled if zero-copy is enabled.
+zero-copy = false
+
+# AsyncCommitBuffer defines the size of asynchronous commit queue, this greatly improve block catching-up
+# performance, -1 means synchronous commit.
+async-commit-buffer = 1
+
+# SnapshotKeepRecent defines what many old snapshots (excluding the latest one) to keep after new snapshots are
+# taken, defaults to 1 to make sure ibc relayers work.
+snapshot-keep-recent = 10
+
+# SnapshotInterval defines the block interval the memiavl snapshot is taken, default to 1000.
+snapshot-interval = 1000
+
+# CacheSize defines the size of the cache for each memiavl store, default to 1000.
+cache-size = 1000
+
+# MaxCatchupTimes defines the max times of catching up WALs async
+# can not less than 1, default to 5
+max-catchup-times = 8
+
+# WalLagThreshold determine whether to proceed with the next round of catchupWAL,
+# pass to main thread if less than WalLagThreshold
+# default to 10,
+# equals to set max-catchup-times=1 if set wal-lag-threshold a large number such as the MaxUint64(18446744073709551615)
+wal-lag-threshold = 5
+
+# WalReaders defines the number of concurrent readers for WAL.
+wal-readers = 10
+
+[versiondb]
+# Enable defines if the versiondb should be enabled.
+enable = true

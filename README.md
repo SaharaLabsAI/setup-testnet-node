@@ -70,19 +70,19 @@ External address is the address of your node that will be used to connect to the
 sed -i 's/external_address = ""/external_address = "your-node-address"/g' chain-data/config/config.toml
 ```
 
-### Batch Request Size
-
-Batch request size is the number of requests that will be bundled into a single batch request. You should configure this value if you want to provide rpc service to the public.
-
-```bash
-echo 'batch-request-limit= "500" ' >> chain-data/config/app.toml
-```
-
 ### Run the node
 
 ```bash
 docker compose up -d
 ```
+
+### Enable VersionDB
+This setup enables VersionDB, a high-performance state storage solution that significantly improves node performance. VersionDB will be automatically enabled during the first node restart after state sync has completed.
+
+Important: RPC queries will only be available for blocks processed after VersionDB is enabled. Historical blocks prior to VersionDB activation will not be queryable through the RPC interface.
+
+To enable VersionDB, you need to restart the node after state sync has completed.
+
 
 ### 📋 Check the logs
 
