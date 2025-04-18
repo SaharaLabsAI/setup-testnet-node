@@ -362,7 +362,7 @@ experimental_max_gossip_connections_to_non_persistent_peers = 0
 # the network to take and serve state machine snapshots. State sync is not attempted if the node
 # has any local state (LastBlockHeight > 0). The node will have a truncated block history,
 # starting from the height of the snapshot.
-enable = true
+enable = false
 
 # RPC servers (comma-separated) for light client verification of the synced state machine and
 # retrieval of state data for node bootstrapping. Also needs a trusted height and corresponding
@@ -371,9 +371,9 @@ enable = true
 # For Cosmos SDK-based chains, trust_period should usually be about 2/3 of the unbonding time (~2
 # weeks) during which they can be financially punished (slashed) for misbehavior.
 rpc_servers = "https://testnet-cos-rpc1.saharalabs.ai,https://testnet-rpc2.saharalabs.ai"
-trust_height = 3073001
-trust_hash = "66C6F1CC7A8CBD2FE84BDFDA65729553A285371D463C3CCB5E99FDBBDA3655B4"
-trust_period = "168h0m0s"
+trust_height = 2600001
+trust_hash = "BC535D273BC2225EF0FA6EA4F6981B1CE26B42F9BFE4279D614AF18D5182972D"
+trust_period = "2168h0m0s"
 
 # Time to spend discovering snapshots before initiating a restore.
 discovery_time = "15s"
