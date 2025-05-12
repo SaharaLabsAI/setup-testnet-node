@@ -41,7 +41,7 @@ moniker = "sahara-testnet-node1"
 #   - EXPERIMENTAL
 #   - use badgerdb build tag (go build -tags badgerdb)
 #db_backend = "goleveldb"
-db_backend = "rocksdb"
+db_backend = "pebbledb"
 
 # Database directory
 db_dir = "data"
@@ -314,7 +314,7 @@ broadcast = true
 wal_dir = "data/mempool.wal"
 
 # Maximum number of transactions in the mempool
-size = 20000
+size = 5000
 
 # Limit the total size of all txs in the mempool.
 # This only accounts for raw transactions (e.g. given 1MB transactions and

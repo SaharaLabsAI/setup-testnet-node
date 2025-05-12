@@ -74,7 +74,7 @@ iavl-disable-fastnode = false
 # AppDBBackend defines the database backend type to use for the application and snapshots DBs.
 # An empty string indicates that a fallback will be used.
 # The fallback is the db_backend value set in CometBFT's config.toml.
-app-db-backend = "rocksdb"
+app-db-backend = ""
 
 ###############################################################################
 ###                         Telemetry Configuration                         ###
@@ -252,3 +252,6 @@ gas-cap = "5000000"
 
 # Call timeout defines the max evm execution time in seconds allowed in eth_call jsonrpc
 call-timeout = "5"
+
+[iavl2]
+enable = true
