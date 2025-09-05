@@ -1,6 +1,6 @@
 services:
   saharad:
-    image: ghcr.io/saharalabsai/sahara/saharad:0.3.0-testnet-beta
+    image: ghcr.io/saharalabsai/sahara/saharad:0.3.1-testnet-beta
     restart: unless-stopped
     user: root
     volumes:
